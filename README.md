@@ -1,3 +1,4 @@
-# codeworks
-Coding Practice and best solutions to problems
-Crypto challenges to improve problem solving abilities and security knowledge
+#codeworks
+Coding practice and best solutions to problems
+1. Crypto challenges by NCCGroup
+2. Random Coding Challenges
