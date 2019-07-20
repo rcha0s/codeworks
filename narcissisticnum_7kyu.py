@@ -12,25 +12,37 @@ Write a method is_narcissistic(i) (in Haskell: isNarcissistic :: Integer -> Bool
 import math
 import unittest
 
+
 def is_narcissistic(value):
+    try:
+        value = int(value)
+    except ValueError:
+        raise ValueError("Not an integer! Try again.")
+
     org_value = value
-    length = int(math.floor(math.log10(value)+1))
-    num_list=list()
+    length = int(math.floor(math.log10(value) + 1))
+    num_list = list()
 
     for i in range(length):
-        u = length-i-1
-        num = (int)(value/(10**u))
-        value = value-((10**u)*num)
+        u = length - i - 1
+        num = (int)(value / (10 ** u))
+        value = value - ((10 ** u) * num)
         num_list.append(num)
-    narc_value = sum(map(lambda x: x**length, num_list))
+    narc_value = sum(map(lambda x: x ** length, num_list))
 
     if narc_value == org_value:
         return True
     else:
         return False
 
+
 class testValidity(unittest.TestCase):
     """Tests for Narcissistic Number"""
+
+    def setUp(self):
+        """Setup the non-integer value" and called before each test"""
+        self.false_int = "A"
+
     def testifequals(self):
         self.assertEqual(is_narcissistic(153), True)
         self.assertEqual(is_narcissistic(201), False)
@@ -41,6 +53,10 @@ class testValidity(unittest.TestCase):
         self.assertEqual(is_narcissistic(825), False)
         self.assertEqual(is_narcissistic(1634), True)
 
+    def testintegerinput(self):
+        # self.assertRaises(ValueError, lambda: is_narcissistic("A"))
+        self.assertRaises(ValueError, is_narcissistic, self.false_int)
+
+
 if __name__ == '__main__':
     unittest.main()
-
